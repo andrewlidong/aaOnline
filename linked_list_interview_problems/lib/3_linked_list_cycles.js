@@ -61,7 +61,16 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
-
+  let fastCounter = linkedList.head;
+  let slowCounter = linkedList.head;
+  
+  while (slowCounter) {
+    if (fastCounter === null || fastCounter.next === null || slowCounter === null) return false;
+    slowCounter = slowCounter.next;
+    fastCounter = fastCounter.next.next;
+    if (slowCounter === fastCounter) return true;
+  }
+  return false;
 }
 
 

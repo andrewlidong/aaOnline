@@ -63,6 +63,24 @@
 function reverseLinkedList(linkedList) {
   // TODO: Implement the reverseLinkedList function!
 
+  if (linkedList.head === null) return linkedList;
+
+  let prev = null;
+  let current = linkedList.head;
+  let next = null;
+
+  while (current !== null) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+
+  let temp = linkedList.head;
+  linkedList.head = linkedList.tail;
+  linkedList.tail = temp;
+  
+  return linkedList;
 }
 
 // ----------------------------------------
@@ -100,3 +118,10 @@ class LinkedList {
 exports.Node = Node;
 exports.LinkedList = LinkedList;
 exports.reverseLinkedList = reverseLinkedList;
+
+
+let linkedList = new LinkedList();
+linkedList.addToTail('First');
+linkedList.addToTail('Second');
+
+console.log(reverseLinkedList(linkedList))

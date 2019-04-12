@@ -59,32 +59,28 @@
 class LRUCacheItem {
   constructor(val = null, key = null) {
 
-  }
+    }
 }
 
 // TODO: Implement the LRUCacheItem class here
 class LRUCache {
   constructor(limit) {
-
   }
 
   // TODO: Implement the size method here
   size() {
-
   }
 
   // TODO: Implement the get method here
   get(key) {
-
   }
 
   // TODO: Implement the set method here
   set(key, val) {
-
+  
   }
 
   isFull() {
-    
   }
 
   prune() {

@@ -39,9 +39,51 @@
 // -----------
 // Let's code!
 // -----------
-function linkedListIntersection(list1, list2) {
-  // TODO: Implement the hasCycle function!
+// The length attribute is broken in your class
+// function linkedListIntersection(list1, list2) {
+//   // TODO: Implement the hasCycle function!
 
+//   let count1 = goodLength(list1.head);
+//   let count2 = goodLength(list2.head);
+//   let countDiff = Math.abs(count1 - count2)
+
+//   let largerList = count2 > count1 ? list2 : list1;
+//   let smallerList = count2 > count1 ? list1 : list2;
+
+//   for (let i = countDiff; i < goodLength(largerList); i++) {
+//     console.log("larger")
+//     console.log(largerList.get(i))
+//     console.log("smaller")
+//     console.log(smallerList.get(i))
+//     if (largerList.get(i) === smallerList.get(i - countDiff)) {
+//       return smallerList.get(i);
+//     }
+//   }
+//   return goodLength(smallerList);
+// }
+
+// function goodLength(list) {
+//   let counter = 0;
+//   while (list) {
+//     list = list.next;
+//     counter++;
+//   }
+//   return counter;
+// }
+
+function linkedListIntersection(list1, list2) {
+  let temp = list2.head;
+  while (list1.head) {
+    while (list2.head) {
+      if (list1.head === list2.head) {
+        return list1.head;
+      }
+      list2.head = list2.head.next;
+    }
+    list1.head = list1.head.next;
+    list2.head = temp;
+  }
+  return null;
 }
 
 // ----------------------------------------
@@ -103,3 +145,30 @@ exports.Node = Node;
 exports.LinkedList = LinkedList;
 exports.linkedListIntersection = linkedListIntersection;
 exports.stringify = stringify;
+
+let list1;
+let list2;
+list1 = new LinkedList();
+list2 = new LinkedList();
+
+let nodeD;
+let nodeY;
+
+list1.addToTail('A');
+list1.addToTail('B');
+list1.addToTail('C');
+list1.addToTail('D');
+list1.addToTail('E');
+list1.addToTail('F');
+
+list2.addToTail('X');
+list2.addToTail('Y');
+
+nodeD = list1.get(3);
+nodeY = list2.get(1);
+
+nodeY.next = nodeD;
+
+// console.log(count2);
+console.log(linkedListIntersection(list1, list2));
+// console.log(list1.get(1));
