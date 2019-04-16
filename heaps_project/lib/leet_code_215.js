@@ -1,3 +1,9 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+
 class MaxHeap {
     constructor() {
         this.array = [null];
@@ -24,9 +30,9 @@ class MaxHeap {
         if (idx === 1) return;
 
         let parentIdx = this.getParent(idx);
-        
+
         if (this.array[parentIdx] < this.array[idx]) {
-            [ this.array[parentIdx], this.array[idx] ] = [ this.array[idx], this.array[parentIdx] ];
+            [this.array[parentIdx], this.array[idx]] = [this.array[idx], this.array[parentIdx]];
             this.siftUp(parentIdx);
         }
     }
@@ -82,8 +88,19 @@ class MaxHeap {
     }
 }
 
-
-
-module.exports = {
-    MaxHeap
+var findKthLargest = function (nums, k) {
+    let heap = new MaxHeap();
+    nums.forEach(num => heap.insert(num));
+    for (let i = 1; i < k; i++) {
+        heap.deleteMax();
+    }
+    return heap.deleteMax();
 };
+
+
+// var findKthLargest = function (nums, k) {
+//     let sorted = nums.sort((a, b) => (a - b));
+//     return sorted[nums.length - k]
+// };
+
+
